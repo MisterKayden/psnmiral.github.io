@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Income Tax Calculator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f0f0;
+      text-align: center;
+      margin-top: 100px;
+      background-image: url('income.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    h2 {
+      color: #800000;
+ 
+    }
+
+    label {
+      font-size: 18px;
+      color: #800000;
+    }
+
+    input {
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #800000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #e6cc00;
+    }
+
+    #result {
+      font-size: 20px;
+      font-weight: bold;
+      color: #e6cc00;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Income Tax Calculator</h2>
+
+  <label for="income">Enter your income:</label>
+  <input type="number" id="income" placeholder="Enter your income" required>
+  <br><br>
+
+  <button onclick="calculateTax()">Calculate Tax</button>
+  <br><br>
+
+  <div id="result"></div>
+
+  <script>
+    function calculateTax() {
+      // Get the user's income from the input field
+      var income = parseFloat(document.getElementById('income').value);
+
+      // Define tax brackets
+      var brackets = [
+        { min: 0, max: 250000, rate: 0 },
+        { min: 250000, max: 400000, rate: 0.20 },
+        { min: 400000, max: 800000, rate: 0.25 },
+        { min: 800000, max: 2000000, rate: 0.30 },
+        { min: 2000000, max: 8000000, rate: 0.32 },
+        { min: 8000000, max: Infinity, rate: 0.35 }
+      ];
+
+      // Calculate income tax based on tax brackets
+      var incomeTax = 0;
+      var remainingIncome = income;
+
+      for (var i = 0; i < brackets.length; i++) {
+        var bracket = brackets[i];
+
+        if (remainingIncome > 0) {
+          var taxableAmount = Math.min(remainingIncome, bracket.max - bracket.min);
+          incomeTax += taxableAmount * bracket.rate;
+          remainingIncome -= taxableAmount;
+        } else {
+          break;
+        }
+      }
+
+      // Display the result
+      document.getElementById('result').innerHTML = "Your Income Tax is: ₱" + incomeTax.toFixed(2);
+    }
+  </script>
+
+</body>
+</html>

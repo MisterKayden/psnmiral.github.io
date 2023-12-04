@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url('space.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        h2 {
+            text-align: center;
+            color: #f4f4f4;
+            width: 100%;
+        }
+
+        /* Style for the boxes */
+        .box {
+            width: 300px;
+            padding: 20px;
+            margin: 10px;
+            border: 2px solid #333;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        input {
+            width: calc(100% - 16px);
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            margin-top: 15px;
+            color: #333;
+        }
+    </style>
+
+
+
+    
+</head>
+<body>
+    <h2>Unit Converter</h2>
+
+    <!-- Box 1: Fahrenheit to Celsius -->
+    <div class="box">
+        <h3>Fahrenheit to Celsius</h3>
+        <label for="fahrenheitInput">Enter Fahrenheit:</label>
+        <input type="number" id="fahrenheitInput">
+        <button onclick="convertFahrenheitToCelsius()">Convert</button>
+        <p id="resultFahrenheitToCelsius"></p>
+    </div>
+
+    <!-- Box 2: Celsius to Fahrenheit -->
+    <div class="box">
+        <h3>Celsius to Fahrenheit</h3>
+        <label for="celsiusInput">Enter Celsius:</label>
+        <input type="number" id="celsiusInput">
+        <button onclick="convertCelsiusToFahrenheit()">Convert</button>
+        <p id="resultCelsiusToFahrenheit"></p>
+    </div>
+
+    <!-- Box 3: Meters to Feet -->
+    <div class="box">
+        <h3>Meters to Feet</h3>
+        <label for="metersInput">Enter Meters:</label>
+        <input type="number" id="metersInput">
+        <button onclick="convertMetersToFeet()">Convert</button>
+        <p id="resultMetersToFeet"></p>
+    </div>
+
+    <!-- Box 4: Feet to Meters -->
+    <div class="box">
+        <h3>Feet to Meters</h3>
+        <label for="feetInput">Enter Feet:</label>
+        <input type="number" id="feetInput">
+        <button onclick="convertFeetToMeters()">Convert</button>
+        <p id="resultFeetToMeters"></p>
+    </div>
+
+    <script>
+        // Conversion functions
+        function convertFahrenheitToCelsius() {
+            var fahrenheit = parseFloat(document.getElementById("fahrenheitInput").value);
+            var celsius = (fahrenheit - 32) * (5/9);
+            document.getElementById("resultFahrenheitToCelsius").innerHTML = celsius.toFixed(2) + " °C";
+        }
+
+        function convertCelsiusToFahrenheit() {
+            var celsius = parseFloat(document.getElementById("celsiusInput").value);
+            var fahrenheit = (celsius * (9/5)) + 32;
+            document.getElementById("resultCelsiusToFahrenheit").innerHTML = fahrenheit.toFixed(2) + " °F";
+        }
+
+        function convertMetersToFeet() {
+            var meters = parseFloat(document.getElementById("metersInput").value);
+            var feet = meters * 3.28084;
+            document.getElementById("resultMetersToFeet").innerHTML = feet.toFixed(2) + " ft";
+        }
+
+        function convertFeetToMeters() {
+            var feet = parseFloat(document.getElementById("feetInput").value);
+            var meters = feet / 3.28084;
+            document.getElementById("resultFeetToMeters").innerHTML = meters.toFixed(2) + " m";
+        }
+    </script>
+</body>
+</html>
